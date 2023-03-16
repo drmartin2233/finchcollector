@@ -7,5 +7,5 @@ class Finch(models.Model):
     description = models.TextField(max_length=250)
     age = models.IntegerField()
 
-    def_str_(self):
-    return self.name
+    def __str__(self):
+        return f'{self.name} ({self.id})' 
