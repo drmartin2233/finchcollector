@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Finch
 
 
@@ -24,3 +24,16 @@ def finches_detail(request, finch_id):
 class FinchCreate(CreateView):
     model = Finch
     fields = '__all__'
+    # special string pattern Django will use
+    # success_url = '/finches/{finch_id}' 
+    # redirect to index page
+    success_url = '/finches'
+
+class FinchUpdate(UpdateView):
+    model = Finch
+    # disable renaming  by excluding name field
+    fields = ['breed', 'description', 'age']
+
+class FinchDelete(DeleteView):
+    model = Finch
+    success_url = '/finches'
