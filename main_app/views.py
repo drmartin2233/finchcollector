@@ -1,9 +1,6 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 from .models import Finch
-# finches = [
-#     {'name': 'Finneus', 'breed': ' European Goldfinch', 'description': 'Black and yellow', 'age': 3},
-#   {'name': 'Felicia', 'breed': 'Hawfinch', 'description': 'Black and orange', 'age': 2},
-# ]
 
 
 # Create your views here.
@@ -23,3 +20,7 @@ def finches_index(request):
 def finches_detail(request, finch_id):
     finch = Finch.objects.get(id=finch_id)
     return render (request, 'finches/detail.html', { 'finch': finch })
+
+class FinchCreate(CreateView):
+    model = Finch
+    fields = '__all__'
